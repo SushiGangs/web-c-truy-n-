@@ -66,7 +66,6 @@ export const DB = {
             description: storyObj.desc,
             tags: storyObj.tags,
             cover_url: storyObj.cover,
-            allow_download: storyObj.allowDownload,
             is_published: storyObj.isPublished,
             author_id: Auth.currentUser.id
         };

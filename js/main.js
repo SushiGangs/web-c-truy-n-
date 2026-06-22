@@ -18,8 +18,9 @@ window.app = {
         
         if (!Auth.currentUser) {
             document.getElementById('modal-auth')?.classList.remove('hidden');
+            UI.updateAuthUI(null);
         } else {
-            UI.updateAvatar(Auth.currentProfile);
+            UI.updateAuthUI(Auth.currentProfile);
         }
 
         // Lắng nghe sự kiện quay lại trang (Back/Forward)
@@ -54,15 +55,14 @@ window.app = {
 
     // --- AUTH ---
     switchAuthTab(tab) {
-        document.getElementById('tab-login').style.borderBottom = tab === 'login' ? '2px solid var(--primary-color)' : 'none';
-        document.getElementById('tab-login').style.color = tab === 'login' ? 'var(--text-main)' : 'var(--text-muted)';
-        document.getElementById('tab-register').style.borderBottom = tab === 'register' ? '2px solid var(--primary-color)' : 'none';
-        document.getElementById('tab-register').style.color = tab === 'register' ? 'var(--text-main)' : 'var(--text-muted)';
-        
         if (tab === 'login') {
+            document.getElementById('auth-title').innerText = 'Đăng Nhập';
+            document.getElementById('auth-subtitle').innerText = 'Chào mừng bạn trở lại với Sushi Truyện!';
             document.getElementById('auth-login-view').classList.remove('hidden');
             document.getElementById('auth-register-view').classList.add('hidden');
         } else {
+            document.getElementById('auth-title').innerText = 'Đăng Ký';
+            document.getElementById('auth-subtitle').innerText = 'Tạo tài khoản mới để bắt đầu viết và lưu truyện.';
             document.getElementById('auth-login-view').classList.add('hidden');
             document.getElementById('auth-register-view').classList.remove('hidden');
         }

@@ -41,7 +41,8 @@
 
             <nav class="nav-links">
                 <div class="avatar-container" style="position: relative;">
-                    <button class="avatar" id="user-avatar" onclick="app.toggleDropdown()" aria-label="Menu tài khoản">
+                    <button class="btn btn-primary" id="btn-login-header" onclick="document.getElementById('modal-auth').classList.remove('hidden')">Đăng Nhập</button>
+                    <button class="avatar hidden" id="user-avatar" onclick="app.toggleDropdown()" aria-label="Menu tài khoản">
                         <!-- Chứa chữ hoặc ảnh img -->
                     </button>
                     <!-- Dropdown -->
@@ -162,11 +163,7 @@
                         </select>
                     </div>
 
-                    <button class="btn btn-primary full-width" onclick="app.saveProfile()">Lưu Cập Nhật</button>
-
-                    <div class="settings-section">
-                        <p style="font-size:13px; color: var(--text-muted); margin-bottom: 10px;">Dữ liệu giờ đây đã được đồng bộ tự động lên Đám mây (Supabase).</p>
-                    </div>
+                    <button class="btn btn-primary full-width" onclick="app.saveProfile()" style="margin-top: 15px;">Lưu Cập Nhật</button>
                 </div>
             </section>
 
@@ -220,9 +217,9 @@
                                 <button class="tag-pill" style="background: transparent; border-style: dashed;" onclick="document.getElementById('custom-tag-input-container').classList.toggle('hidden')">
                                     <i class="ph ph-plus"></i> Thêm Tag
                                 </button>
-                                <div id="custom-tag-input-container" class="hidden" style="position: absolute; top: 100%; left: 0; margin-top: 5px; background: var(--block-bg); border: 1px solid var(--block-border); border-radius: 8px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10; display: flex; gap: 5px;">
-                                    <input type="text" id="custom-tag-input" placeholder="Nhập tag mới..." style="padding: 5px 10px; border-radius: 4px; border: 1px solid var(--border-light); background: var(--input-bg); color: var(--text-main); font-size: 13px; outline: none;" onkeydown="if(event.key === 'Enter') app.addCustomStoryTag()">
-                                    <button class="btn btn-primary" style="padding: 5px 10px;" onclick="app.addCustomStoryTag()">Thêm</button>
+                                <div id="custom-tag-input-container" class="hidden" style="position: absolute; top: 100%; left: 0; margin-top: 5px; background: var(--block-bg); border: 1px solid var(--block-border); border-radius: 8px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10; display: flex; gap: 8px; min-width: 220px;">
+                                    <input type="text" id="custom-tag-input" placeholder="Nhập tag mới..." style="flex: 1; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-light); background: var(--input-bg); color: var(--text-main); font-size: 13px; outline: none; min-width: 0;" onkeydown="if(event.key === 'Enter') app.addCustomStoryTag()">
+                                    <button class="btn btn-primary" style="padding: 6px 12px; font-size: 13px; white-space: nowrap;" onclick="app.addCustomStoryTag()">Thêm</button>
                                 </div>
                             </div>
                         </div>
@@ -518,26 +515,33 @@
 
     <!-- Auth Modal -->
     <div class="modal-overlay hidden" id="modal-auth" style="z-index: 5000;" tabindex="-1">
-        <div class="modal-content dark-glass" style="max-width: 400px;">
-            <div style="display:flex; margin-bottom: 20px; border-bottom: 1px solid var(--border-light);">
-                <button id="tab-login" class="btn" style="flex:1; border-radius: 0; border-bottom: 2px solid var(--primary-color); background:transparent;" onclick="app.switchAuthTab('login')">Đăng Nhập</button>
-                <button id="tab-register" class="btn" style="flex:1; border-radius: 0; color:var(--text-muted); background:transparent;" onclick="app.switchAuthTab('register')">Đăng Ký</button>
+        <div class="modal-content dark-glass" style="max-width: 400px; text-align: center; padding: 40px 30px;">
+            <div style="margin-bottom: 25px;">
+                <h2 id="auth-title" style="font-size: 24px; font-weight: 700; margin-bottom: 10px;">Đăng Nhập</h2>
+                <p id="auth-subtitle" style="font-size: 14px; color: var(--text-muted);">Chào mừng bạn trở lại với Sushi Truyện!</p>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="auth-email" placeholder="example@gmail.com" required>
+            
+            <div class="form-group" style="text-align: left;">
+                <label style="font-size: 13px;">Email</label>
+                <input type="email" id="auth-email" placeholder="example@gmail.com" required style="padding: 12px; font-size: 15px;">
             </div>
-            <div class="form-group">
-                <label>Mật khẩu</label>
-                <input type="password" id="auth-password" placeholder="••••••••" required>
+            <div class="form-group" style="text-align: left;">
+                <label style="font-size: 13px;">Mật khẩu</label>
+                <input type="password" id="auth-password" placeholder="••••••••" required style="padding: 12px; font-size: 15px;">
             </div>
             
             <div id="auth-login-view">
-                <button class="btn btn-primary full-width" onclick="app.login()">Đăng Nhập</button>
+                <button class="btn btn-primary full-width" onclick="app.login()" style="padding: 12px; font-size: 15px; margin-top: 10px;">Đăng Nhập</button>
+                <div style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">
+                    Chưa có tài khoản? <a href="#" onclick="app.switchAuthTab('register'); return false;" style="color: var(--primary-color); font-weight: 600;">Đăng ký ngay</a>
+                </div>
             </div>
+            
             <div id="auth-register-view" class="hidden">
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Tạo tài khoản mới để quản lý thư viện truyện của bạn.</p>
-                <button class="btn btn-primary full-width" onclick="app.register()">Đăng Ký</button>
+                <button class="btn btn-primary full-width" onclick="app.register()" style="padding: 12px; font-size: 15px; margin-top: 10px;">Tạo Tài Khoản</button>
+                <div style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">
+                    Đã có tài khoản? <a href="#" onclick="app.switchAuthTab('login'); return false;" style="color: var(--primary-color); font-weight: 600;">Đăng nhập</a>
+                </div>
             </div>
         </div>
     </div>

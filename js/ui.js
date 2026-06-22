@@ -58,15 +58,24 @@ export const UI = {
         return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
     },
 
-    updateAvatar(profile) {
+    updateAuthUI(profile) {
         const avatarBtn = document.getElementById('user-avatar');
+        const loginBtn = document.getElementById('btn-login-header');
         if(!avatarBtn) return;
-        if (profile && profile.avatar_url) {
-            avatarBtn.style.backgroundImage = `url(${profile.avatar_url})`;
-            avatarBtn.innerText = '';
+        
+        if (profile) {
+            if(loginBtn) loginBtn.classList.add('hidden');
+            avatarBtn.classList.remove('hidden');
+            if (profile.avatar_url) {
+                avatarBtn.style.backgroundImage = `url('${profile.avatar_url}')`;
+                avatarBtn.innerText = '';
+            } else {
+                avatarBtn.style.backgroundImage = 'none';
+                avatarBtn.innerText = profile.pen_name ? profile.pen_name.charAt(0).toUpperCase() : 'U';
+            }
         } else {
-            avatarBtn.style.backgroundImage = 'none';
-            avatarBtn.innerText = profile?.pen_name ? profile.pen_name.charAt(0).toUpperCase() : 'U';
+            if(loginBtn) loginBtn.classList.remove('hidden');
+            avatarBtn.classList.add('hidden');
         }
     }
 };
