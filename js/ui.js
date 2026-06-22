@@ -66,7 +66,7 @@ export const UI = {
         if (profile) {
             if(loginBtn) loginBtn.classList.add('hidden');
             avatarBtn.classList.remove('hidden');
-            if (profile.avatar_url) {
+            if (profile.avatar_url && profile.avatar_url !== 'undefined' && profile.avatar_url !== 'null') {
                 avatarBtn.style.backgroundImage = `url('${profile.avatar_url}')`;
                 avatarBtn.innerText = '';
             } else {

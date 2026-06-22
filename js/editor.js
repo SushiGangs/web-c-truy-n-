@@ -114,7 +114,7 @@ export const Editor = {
                 window.app.showMyStoriesManager();
             }
         } catch(e) {
-            UI.toast('Lỗi khi lưu truyện', 'error');
+            UI.toast('Lỗi khi lưu truyện: ' + (e.message || e), 'error');
             console.error(e);
         }
     },
@@ -148,7 +148,7 @@ export const Editor = {
             
             window.app.editStory(this.currentStoryId);
         } catch(e) {
-            UI.toast('Lỗi khi lưu chương', 'error');
+            UI.toast('Lỗi khi lưu chương: ' + (e.message || e), 'error');
             console.error(e);
         }
     },
