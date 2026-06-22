@@ -1,0 +1,16 @@
+{
+  "name": "Sushi Web Truyện",
+  "short_name": "Sushi Truyện",
+  "description": "Nền tảng đọc và viết truyện chuyên nghiệp",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3389/3389081.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
