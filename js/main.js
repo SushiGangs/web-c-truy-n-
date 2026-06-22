@@ -568,10 +568,6 @@ window.app = {
             document.getElementById('chapter-title').value = c.title;
             document.getElementById('chapter-status').value = c.is_published !== false ? "true" : "false";
             Editor.quill.root.innerHTML = c.content;
-        } else {
-            document.getElementById('editing-chapter-id').value = '';
-            document.getElementById('chapter-title').value = '';
-            document.getElementById('chapter-status').value = "true";
             
             const draftKey = `sushi_draft_${Editor.currentStoryId}_${c.id}`;
             const draft = localStorage.getItem(draftKey);
